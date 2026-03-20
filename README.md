@@ -66,18 +66,22 @@ cobalt2 theme for neovim in lua using [tjdevries/colorbuddy](https://github.com/
 
 ## Installation
 
+**Requires Neovim 0.8+** (colorbuddy v2 uses `vim.api.nvim_set_hl()`)
+
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
 {
     "lalitmee/cobalt2.nvim",
     event = { "ColorSchemePre" }, -- if you want to lazy load
-    dependencies = { "tjdevries/colorbuddy.nvim", tag = "v1.0.0" },
-    init = function()
-        require("colorbuddy").colorscheme("cobalt2")
+    dependencies = { "tjdevries/colorbuddy.nvim", branch = "master" },
+    config = function()
+        vim.cmd("colorscheme cobalt2")
     end,
 },
 ```
+
+**Note:** The `config` function should use `vim.cmd("colorscheme cobalt2")` instead of `require("colorbuddy").colorscheme("cobalt2")`. The `colorscheme` command triggers loading of the colorscheme file which then loads the actual color definitions.
 
 - [packer.nvim](https://github.com/wbthomason/packer.nvim)
 
@@ -95,13 +99,13 @@ Use the colorscheme by adding these lines according to your config:
 - Vim-Script
 
 ```vim
-lua require('colorbuddy').colorscheme('cobalt2')
+colorscheme cobalt2
 ```
 
 - Lua
 
 ```lua
-require('colorbuddy').colorscheme('cobalt2')
+vim.cmd("colorscheme cobalt2")
 ```
 
 ## Screenshots
